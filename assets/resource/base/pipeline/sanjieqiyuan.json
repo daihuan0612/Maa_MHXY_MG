@@ -122,7 +122,8 @@
         "pre_delay": 200,
         "template": [
             "richangdati/sanjieqiyuan_weikaishi.png",
-            "richangdati/sanjieqiyuan_weikaishi2.png"
+            "richangdati/sanjieqiyuan_weikaishi2.png",
+            "richangdati/sanjieqiyuan_weikaishi3.png"
         ],
         "threshold": 0.9,
         "roi": [
@@ -139,7 +140,9 @@
         "recognition": "TemplateMatch",
         "template": [
             "richangdati/sanjieqiyuan.png",
-            "richangdati/sanjieqiyuan2.png"
+            "richangdati/sanjieqiyuan2.png",
+            "richangdati/sanjieqiyuan3.png",
+            "richangdati/sanjieqiyuan4.png"
         ],
         "roi": [
             316,

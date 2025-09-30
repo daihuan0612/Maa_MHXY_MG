@@ -112,7 +112,8 @@
         "recognition": "TemplateMatch",
         "pre_delay": 200,
         "template": [
-            "richangdati/kejuxiangshi_weikaishi.png"
+            "richangdati/kejuxiangshi_weikaishi.png",
+            "richangdati/kejuxiangshi_weikaishi2.png"
         ],
         "post_delay": 200,
         "next": [
@@ -122,7 +123,8 @@
     "活动-科举乡试-开始": {
         "recognition": "TemplateMatch",
         "template": [
-            "richangdati/kejuxiangshi.png"
+            "richangdati/kejuxiangshi.png",
+            "richangdati/kejuxiangshi2.png"
         ],
         "threshold": 0.8,
         "next": [

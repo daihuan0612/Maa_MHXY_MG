@@ -116,7 +116,10 @@
         "template": [
             "yunbiao/yunbiao_cishu0.png",
             "yunbiao/yunbiao_cishu1.png",
-            "yunbiao/yunbiao_cishu2.png"
+            "yunbiao/yunbiao_cishu2.png",
+            "yunbiao/yunbiao_cishu0_2.png",
+            "yunbiao/yunbiao_cishu1_2.png",
+            "yunbiao/yunbiao_cishu2_2.png"
         ],
         "roi": [
             316,

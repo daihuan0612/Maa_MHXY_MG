@@ -260,7 +260,8 @@
         "action": "Click",
         "post_delay": 1000,
         "next": [
-            "召唤灵点击喂养-确定"
+            "召唤灵点击喂养-确定",
+            "召唤灵点击喂养-未识别到确定"
         ]
     },
     "召唤灵点击喂养-确定": {
@@ -277,7 +278,22 @@
         "action": "Click",
         "post_delay": 1500
     },
+    "召唤灵点击喂养-未识别到确定": {
+        "inverse": true,
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            650,
+            380,
+            183,
+            96
+        ],
+        "pre_delay": 2000
+    },
     "卧室-点击打理-过渡": {
+        "pre_delay": 2000,
         "next": [
             "卧室-点击打理"
         ],
@@ -298,9 +314,6 @@
         "pre_delay": 500,
         "next": [
             "卧室-点击佣人"
-        ],
-        "interrupt": [
-            "panduan_zhujiemian"
         ]
     },
     "卧室-点击佣人": {
