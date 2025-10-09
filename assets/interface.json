@@ -323,8 +323,10 @@
             "type": "int",
             "default": 2,
             "pipeline_override": {
-                "custom_action_param": {
-                    "target_count": "{number}"
+                "抓鬼轮次计算-agent": {
+                    "custom_action_param": {
+                        "target_count": "{number}"
+                    }
                 }
             }
         }

@@ -79,6 +79,7 @@
         ],
         "interrupt": [
             "shimenwancheng-九转天阶遮挡",
+            "师门完成-九幽遮挡",
             "issub_sleep2"
         ]
     },
@@ -96,6 +97,21 @@
         "pre_delay": 1000,
         "action": "Key",
         "key": 111
+    },
+    "师门完成-九幽遮挡": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/jiuyoudiyu.png"
+        ],
+        "roi": [
+            1085,
+            128,
+            64,
+            71
+        ],
+        "pre_delay": 1000,
+        "action": "Click",
+        "post_delay": 1000
     },
     "师门完成确定-图片识别": {
         "recognition": "TemplateMatch",
