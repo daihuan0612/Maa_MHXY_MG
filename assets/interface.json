@@ -12,19 +12,26 @@
     ],
     "resource": [
         {
-            "name": "官服",
+            "name": "官方混服",
             "path": [
                 "{PROJECT_DIR}/resource/base"
             ]
+        },
+        {
+            "name": "官服",
+            "path": [
+                "{PROJECT_DIR}/resource/base",
+                "{PROJECT_DIR}/resource/NeteaseServer"
+            ]
+        },
+        {
+            "name": "九游",
+            "path": [
+                "{PROJECT_DIR}/resource/base",
+                "{PROJECT_DIR}/resource/9game"
+            ]
         }
     ],
-    "agent": {
-        "child_exec": "python",
-        "child_args": [
-            "{PROJECT_DIR}/../agent/main.py",
-            "-u"
-        ]
-    },
     "task": [
         {
             "name": "福利签到(已完成)",
@@ -128,6 +135,11 @@
             "name": "活力打工",
             "entry": "huoli",
             "doc": "活力打工"
+        },
+        {
+            "name": "启动游戏",
+            "entry": "start",
+            "doc": "启动游戏,登录默认账号角色"
         }
     ],
     "option": {
@@ -323,7 +335,7 @@
             "type": "int",
             "default": 2,
             "pipeline_override": {
-                "抓鬼轮次计算-agent": {
+                "抓鬼轮数": {
                     "custom_action_param": {
                         "target_count": "{number}"
                     }

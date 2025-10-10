@@ -480,9 +480,16 @@
             "钟馗-捉鬼任务-循环"
         ]
     },
+    "抓鬼轮数": {
+        "action": "Custom",
+        "custom_action": "countZG",
+        "custom_action_param": {
+            "target_count": 2
+        }
+    },
     "抓鬼轮次计算-agent": {
         "action": "Custom",
-        "custom_action": "count",
+        "custom_action": "countZG",
         "custom_action_param": {
             "count": 1,
             "target_count": 2,
