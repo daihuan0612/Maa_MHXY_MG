@@ -242,9 +242,12 @@ class sjqy_tiku_V2(CustomRecognition):
                 # logger.info("没有识别到题目")
                 logger.info(f"未在题库中搜索到答案次数:{NotAnswerCount}，请反馈开发者填充题库。")
                 return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="未识别到题目")
+            
+            #按照box进行排序
+            sorted_results= self.sort_ocr_results_by_position(reco_detail.all_results)
             #整合题目
             ext=''
-            for item in reco_detail.all_results:
+            for item in sorted_results:
                 if item.text!='':
                     ext+=item.text
             pattern = r'第\d+题：|[（(]\d+/\d+[）)]'
@@ -288,3 +291,36 @@ class sjqy_tiku_V2(CustomRecognition):
 
         logger.info(f"未在题库中搜索到答案次数:{NotAnswerCount}，请反馈开发者填充题库。")
         return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="答题结束")
+
+    # 根据位置排序OCR结果
+    def sort_ocr_results_by_position(ocr_results):
+        # 定义行高阈值，如果两个框的y坐标差距小于这个值，认为它们在同一行
+        row_height_threshold = 20
+        
+        # 按y坐标分组（将接近的y坐标视为同一行）
+        rows = {}
+        for result in ocr_results:
+            y = result.box[1]  # y坐标
+            assigned = False
+            
+            # 检查是否可以分配到现有行
+            for row_y in rows.keys():
+                if abs(y - row_y) < row_height_threshold:
+                    rows[row_y].append(result)
+                    assigned = True
+                    break
+            
+            # 如果不能分配到现有行，创建新行
+            if not assigned:
+                rows[y] = [result]
+        
+        # 对每一行内的元素按x坐标排序
+        for row_y in rows:
+            rows[row_y].sort(key=lambda r: r.box[0])
+        
+        # 按y坐标对行进行排序，并将所有结果合并到一个列表中
+        sorted_results = []
+        for row_y in sorted(rows.keys()):
+            sorted_results.extend(rows[row_y])
+        
+        return sorted_results
