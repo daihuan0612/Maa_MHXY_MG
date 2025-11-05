@@ -95,7 +95,14 @@
         },
         {
             "name": "科举乡试(已完成)",
-            "entry": "kejuxiangshi"
+            "entry": "kejuxiangshi",
+            "option": [
+                "是否使用Ai进行答题"
+            ],
+            "advanced": [
+                "Deepseek_apikey"
+            ],
+            "doc": "科举乡试使用ai答题，请在高级中填写Key,暂时只支持deepseek。默认不使用AI"
         },
         {
             "name": "活跃领取(已完成)",
@@ -338,6 +345,28 @@
                     }
                 }
             ]
+        },
+        "是否使用Ai进行答题": {
+            "cases": [
+                {
+                    "name": "不使用ai",
+                    "pipeline_override": {
+                        "活动-科举乡试-进入答题界面": {
+                            "interrupt": []
+                        }
+                    }
+                },
+                {
+                    "name": "使用ai",
+                    "pipeline_override": {
+                        "活动-科举乡试-进入答题界面": {
+                            "interrupt": [
+                                "活动-科举乡试-开始答题agent"
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     },
     "advanced": {
@@ -359,6 +388,18 @@
                 "抓鬼轮数": {
                     "custom_action_param": {
                         "target_count": "{number}"
+                    }
+                }
+            }
+        },
+        "Deepseek_apikey": {
+            "field": "text",
+            "type": "string",
+            "default": "",
+            "pipeline_override": {
+                "AIapikey": {
+                    "custom_recognition_param": {
+                        "apikey": "{text}"
                     }
                 }
             }
