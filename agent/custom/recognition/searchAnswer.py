@@ -2,7 +2,7 @@ import json
 import re
 import datetime
 import os
-
+import difflib
 
 #测试环境路径
 # file_path = r"assets\agent\custom\recognition\tiku.txt"
@@ -56,39 +56,33 @@ def load_question_bank(file_path):
         print(f"加载题库时出错: {e}")
         return {}
 
-def search_answer(question_bank, query):
+def search_answer(question_bank, query, threshold=70):
     """
     在题库中搜索问题并返回答案，并计算可信度
     """
-    # 精确匹配
-    if query in question_bank:
-        confidence = 100  # 精确匹配，可信度100%
-        return format_answer(question_bank[query]), confidence, "精确匹配"
-    
-    # 模糊匹配
+    def normalize_text(s):
+        s = s.lower()
+        s = re.sub(r"[\s\t\r\n]", "", s)
+        s = re.sub(r"[，,、。！？?!：:；;“”\"'（）()【】\[\]\-·—…]", "", s)
+        return s
+
+    nq = normalize_text(query)
+
+    for q in question_bank:
+        if nq == normalize_text(q):
+            return format_answer(question_bank[q]), 100, "精确匹配"
+
     best_match = None
     best_confidence = 0
-    match_type = ""
-    
     for q in question_bank:
-        # 计算相似度/可信度
-        if query in q:  # 查询是原问题的子串
-            similarity = len(query) / len(q) * 100
-            if similarity > best_confidence:
-                best_confidence = similarity
-                best_match = q
-                match_type = "部分匹配(查询是题库问题的子串)"
-        elif q in query:  # 原问题是查询的子串
-            similarity = len(q) / len(query) * 100
-            if similarity > best_confidence:
-                best_confidence = similarity
-                best_match = q
-                match_type = "部分匹配(题库问题是查询的子串)"
-    
-    if best_match:
-        return format_answer(question_bank[best_match]), round(best_confidence), match_type
-    
-    return "未找到匹配的问题", 0, "无匹配"
+        ratio = difflib.SequenceMatcher(None, nq, normalize_text(q)).ratio()
+        similarity = int(round(ratio * 100))
+        if similarity > best_confidence:
+            best_confidence = similarity
+            best_match = q
+    if best_match and best_confidence >= threshold:
+        return format_answer(question_bank[best_match]), best_confidence, "相似度匹配"
+    return "未找到匹配的问题", 0, "低于阈值"
 
 def format_answer(answers):
     """
