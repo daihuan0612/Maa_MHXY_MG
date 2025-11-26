@@ -156,8 +156,6 @@
             67
         ],
         "next": [
-            "活动-科举乡试-结束",
-            "活动-科举乡试-结束2",
             "活动-科举乡试-结束-图片"
         ],
         "interrupt": [
@@ -214,16 +212,14 @@
         ]
     },
     "活动-科举乡试-开始答题_普通": {
-        "recognition": "OCR",
-        "expected": "A",
-        "roi": [
-            400,
-            304,
-            377,
-            98
-        ],
         "pre_delay": 1500,
-        "action": "Click"
+        "action": "Click",
+        "target": [
+            487,
+            322,
+            150,
+            58
+        ]
     },
     "AIapikey": {
         "recognition": "Custom",
