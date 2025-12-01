@@ -184,6 +184,11 @@
             "name": "门派闯关（公测）",
             "entry": "menpaichuangguan",
             "doc": "需要用户手动组队后，在开始运行任务"
+        },
+        {
+            "name": "召唤灵海底（公测）",
+            "entry": "haidi",
+            "doc": "需要用户手动组队后，在开始运行任务"
         }
     ],
     "option": {
@@ -299,8 +304,11 @@
                     "name": "不选择题库",
                     "pipeline_override": {
                         "活动-三界奇缘-进入答题界面": {
-                            "interrupt": [
-                                "活动-三界奇缘-开始答题"
+                            "next": [
+                                "活动-三界奇缘-结束",
+                                "主界面",
+                                "[JumpBack]活动-三界奇缘-开始答题",
+                                "[JumpBack]panduan_zhujiemian"
                             ]
                         }
                     }
@@ -309,8 +317,11 @@
                     "name": "选择题库",
                     "pipeline_override": {
                         "活动-三界奇缘-进入答题界面": {
-                            "interrupt": [
-                                "活动-三界奇缘-开始答题_agent"
+                            "next": [
+                                "活动-三界奇缘-结束",
+                                "主界面",
+                                "[JumpBack]活动-三界奇缘-开始答题_agent",
+                                "[JumpBack]panduan_zhujiemian"
                             ]
                         }
                     }
@@ -398,7 +409,10 @@
                     "name": "不使用ai",
                     "pipeline_override": {
                         "活动-科举乡试-进入答题界面": {
-                            "interrupt": []
+                            "next": [
+                                "活动-科举乡试-结束-图片",
+                                "[JumpBack]活动-科举乡试-开始答题_普通"
+                            ]
                         }
                     }
                 },
@@ -406,8 +420,9 @@
                     "name": "使用ai",
                     "pipeline_override": {
                         "活动-科举乡试-进入答题界面": {
-                            "interrupt": [
-                                "活动-科举乡试-开始答题agent"
+                            "next": [
+                                "活动-科举乡试-结束-图片",
+                                "[JumpBack]活动-科举乡试-开始答题agent"
                             ]
                         }
                     }
