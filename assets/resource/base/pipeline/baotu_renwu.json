@@ -106,14 +106,20 @@
     "click_tab_dxe": {
         "recognition": "TemplateMatch",
         "template": "baotu/tab_dxe.png",
-        "action": "Click",
-        "post_delay": 1000,
         "roi": [
             738,
             359,
             100,
             42
         ],
+        "action": "Click",
+        "target_offset": [
+            2,
+            2,
+            -4,
+            -4
+        ],
+        "post_delay": 1000,
         "next": [
             "click_baotu_ttwf"
         ]
